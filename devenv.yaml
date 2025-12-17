@@ -1,0 +1,17 @@
+inputs:
+  nixpkgs:
+    url: github:cachix/devenv-nixpkgs/rolling
+  nixpkgs-python:
+    url: github:cachix/nixpkgs-python
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
+
+  # Add this input for the treefmt module
+  treefmt-nix:
+    url: github:numtide/treefmt-nix
+
+secretspec:
+  enable: false
+
+allowUnfree: true
