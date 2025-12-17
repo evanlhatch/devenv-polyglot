@@ -39,6 +39,7 @@
         talhelper
         kubeswitch
         helm-docs
+        krr
 
         # Kubernetes Utilities and Observability
         kdash # Kubernetes dashboard TUI
@@ -50,7 +51,7 @@
         tetragon # eBPF-based security observability and runtime enforcement
 
         # Container and Image Tools
-        lazydocker # Docker and Docker Compose TUI
+        # lazydocker # Docker and Docker Compose TUI
         crane # Interact with container registries
         hadolint # Dockerfile linter
         dockerfmt # Dockerfile formatter
