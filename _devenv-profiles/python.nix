@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   profiles.py = {
     module = {
       enterShell = ''
@@ -21,7 +20,7 @@
         enable = true;
         uv.enable = true;
         uv.sync.enable = true;
-        uv.sync.groups = [ "base" ];
+        uv.sync.groups = ["base"];
       };
 
       # 3. Define the package set for the Python stack.
@@ -30,6 +29,7 @@
         basedpyright
         # Formatter and linter
         ruff
+        ty
       ];
 
       # 4. Git hooks for dependency management.
@@ -46,37 +46,37 @@
       treefmt.config.programs = {
         ruff-format.enable = true;
         ruff-check.enable = true;
-        basedpyright.enable = true;
+        #basedpyright.enable = true;
       };
     };
   };
 
   # Extended profiles that inherit from the base 'py' profile.
   profiles.marimo = {
-    extends = [ "py" ];
+    extends = ["py"];
     module = {
       languages.python.uv.sync.groups = [
         "base"
         "marimo"
       ];
-      packages = with pkgs; [ duckdb ];
+      packages = with pkgs; [duckdb];
     };
   };
 
   profiles.dagster = {
-    extends = [ "py" ];
+    extends = ["py"];
     module = {
       languages.python.uv.sync.groups = [
         "base"
         "marimo"
         "dagster"
       ];
-      packages = with pkgs; [ ];
+      packages = with pkgs; [];
     };
   };
 
   profiles.fastapi = {
-    extends = [ "py" ];
+    extends = ["py"];
     module = {
       languages.python.uv.sync.groups = [
         "base"
@@ -92,7 +92,7 @@
   # --- NEW: Scaffolding Profiles ---
 
   profiles.analytics-workbench = {
-    extends = [ "dagster" ];
+    extends = ["dagster"];
     module = {
       # Minimal scaffolding for production-grade DuckDB analytics stack
       scripts.setup-analytics-workbench = {
@@ -245,12 +245,12 @@
 
       # Auto-run setup on shell entry
       tasks."analytics:init".exec = "setup-analytics-workbench";
-      tasks."analytics:init".before = [ "devenv:enterShell" ];
+      tasks."analytics:init".before = ["devenv:enterShell"];
     };
   };
 
   profiles.analysis-workbench = {
-    extends = [ "py" ];
+    extends = ["py"];
     module = {
       # Ultra-minimal scaffolding for DuckDB + Marimo analysis
       scripts.setup-analysis-workbench = {
@@ -297,7 +297,7 @@
 
       # Auto-run setup on shell entry
       tasks."analysis:init".exec = "setup-analysis-workbench";
-      tasks."analysis:init".before = [ "devenv:enterShell" ];
+      tasks."analysis:init".before = ["devenv:enterShell"];
     };
   };
 }

@@ -14,13 +14,14 @@ base = [               # always-installed by devenv
     "python-dateutil",
     # "pytest-cov",
     "pytest-mock",
+    "opendal",
     "loguru",
     # "polyfactory",
     # "rich",
     "orjson",
     "pydantic",
     "tabulate",
-    "toolz",
+    # "toolz",
     "typer",
     "httpx",
     "pydantic-settings", # replaces python-dotenv
@@ -74,8 +75,8 @@ daft = [
 dagster = [
     "dagster",
     "data-diff",
-    "sqlmesh[duckdb,github,iceberg]",
-    "dlt[filesystem,parquet,s3,cli,duckdb,http,iceberg]",
+    "sqlmesh[duckdb,github]",
+    "dlt[filesystem,parquet,s3,cli,duckdb,http]",
     "dagster-duckdb",
     # "whylogs",
     "dagster-postgres",
@@ -93,3 +94,7 @@ dagster = [
 [tool.dg]
 directory_type = "project"
 root_module = "pipeline"  # Must match your src/ folder name
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/devenv_polyglot"]

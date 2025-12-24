@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   profiles.cloud = {
     module = {
       enterShell = ''
@@ -39,7 +38,6 @@
         talhelper
         kubeswitch
         helm-docs
-        krr
 
         # Kubernetes Utilities and Observability
         kdash # Kubernetes dashboard TUI
@@ -52,15 +50,15 @@
 
         # Container and Image Tools
         # lazydocker # Docker and Docker Compose TUI
-        crane # Interact with container registries
-        hadolint # Dockerfile linter
-        dockerfmt # Dockerfile formatter
+        # crane # Interact with container registries
+        # hadolint # Dockerfile linter
+        #mdockerfmt # Dockerfile formatter
 
         # Security and Secrets Management
         # sops # Secrets OPerationS (encrypted secrets management)
         # age # Simple, modern, and secure file encryption
         trivy # Vulnerability scanner for containers and filesystems
-        cosign # Supply chain security for containers
+        # cosign # Supply chain security for containers
         kubelogin-oidc # OIDC authentication for kubectl
 
         # Cloud Provider CLIs
@@ -68,11 +66,11 @@
         hcloud # Hetzner Cloud CLI
 
         # Infrastructure as Code (IaC)
-        hclfmt # HCL formatter (Terraform, Packer)
+        # hclfmt # HCL formatter (Terraform, Packer)
         opentofu # Terraform-compatible CLI
-        terraform-docs
-        driftctl
-        inframap
+        # terraform-docs
+        # driftctl
+        # inframap
 
         # CI/CD and Automation
         actionlint # GitHub Actions workflow linter

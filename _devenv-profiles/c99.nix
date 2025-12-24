@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   profiles.c99 = {
     module = {
       enterShell = ''
@@ -273,7 +272,7 @@
       };
 
       tasks."c99:init".exec = "c99-init";
-      tasks."c99:init".before = [ "devenv:enterShell" ];
+      tasks."c99:init".before = ["devenv:enterShell"];
     };
   };
 }
