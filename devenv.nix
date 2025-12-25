@@ -4,15 +4,16 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   # base
   env.VIRTUAL_ENV = "${config.env.DEVENV_STATE}/venv";
 
   packages = with pkgs; [
-    trufflehog
+    #trufflehog
     jujutsu
     infisical
-    secretspec
+    #secretspec
     #buf
   ];
 
@@ -78,7 +79,7 @@
 
         # Spell checker
         typos = {
-          enable = true;
+          enable = false;
           binary = false; # Ignore binary files
         };
 
@@ -90,7 +91,7 @@
 
   # shared hooks (non-formatting/linting)
   git-hooks = {
-    excludes = []; # Excludes are now handled by treefmt.config.settings.global.excludes
+    excludes = [ ]; # Excludes are now handled by treefmt.config.settings.global.excludes
     hooks = {
       trufflehog.enable = true;
       treefmt.enable = true;
@@ -114,9 +115,9 @@
   '';
 
   /*
-      -----------------------------------------------------------
-      2.  PROFILES – opt-in language stacks
-  -----------------------------------------------------------
+        -----------------------------------------------------------
+        2.  PROFILES – opt-in language stacks
+    -----------------------------------------------------------
   */
   # Import all profile modules from devenv-profiles folder for faster eval times
   imports = builtins.attrValues (
