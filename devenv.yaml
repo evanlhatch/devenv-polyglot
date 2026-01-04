@@ -6,12 +6,11 @@ inputs:
     inputs:
       nixpkgs:
         follows: nixpkgs
-
   # Add this input for the treefmt module
   treefmt-nix:
     url: github:numtide/treefmt-nix
-
 secretspec:
   enable: false
-
+  provider: 1password # keyring, dotenv, env, 1password, lastpass
+  profile: default
 allowUnfree: true

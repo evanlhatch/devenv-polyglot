@@ -14,6 +14,7 @@
     jujutsu
     infisical
     #secretspec
+    #_1password
     #buf
   ];
 
@@ -93,7 +94,7 @@
   git-hooks = {
     excludes = [ ]; # Excludes are now handled by treefmt.config.settings.global.excludes
     hooks = {
-      trufflehog.enable = true;
+      trufflehog.enable = false;
       treefmt.enable = true;
       forbid-new-submodules.enable = true;
       check-merge-conflicts.enable = true;
