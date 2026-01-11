@@ -11,60 +11,68 @@ dependencies = []
 [dependency-groups]
 base = [ # always-installed by devenv
   "pytest",
+  "restate-sdk",
   "invoke",
   "python-dateutil",
-  # "pytest-cov",
+  "watchfiles",
+  "pytest-cov",
   "pytest-mock",
   "opendal",
+  "plumbum",
   "loguru",
   # "polyfactory",
-  # "rich",
+  "rich",
   "orjson",
+  "minijinja",
   "pydantic",
   "tabulate",
-  # "toolz",
   "typer",
   "httpx",
   "pydantic-settings", # replaces python-dotenv
-  "websockets",
-  "certifi",
-  "pathvalidate",
-  "pathspec",
+  # "websockets",
+  # "pathvalidate",
+  # "pathspec",
+  # "s3fs",
   "universal-pathlib",
-  "fsspec[s3,http]",
+  # "fsspec[s3,http]",
+  "icecream",
+  # "libsql" # replaces "aiosqlite",
   #  "uvloop",
   #  "python-magic",
   #  "aiofiles",
-  "anyio",
-  # "aiosqlite",
 ]
+
+tui = ["textual",
+]
+
 fastapi = [
-  "fastapi[all]",
-  "fastapi-htmx",
-  "uvicorn[standard]",
+  "fastapi",
+# minijinja replaced "jinja2-fragments", "fastapi-htmx","fasthx[jinja]",
+  "granian[pname,uvloop,reload]",
   "asyncpg",                               # Already have it - use for caching too
+  "structlog",
   "python-multipart",
+  "connect-python", # for buf/connectrpc
   "opentelemetry-instrumentation-fastapi",
   "opentelemetry-exporter-otlp",
   "prometheus-client",
-  "supabase",
+  "libsql", # this is turso
+  # "supabase",
   "slowapi",
   "fastapi-cache2",
   "fastapi-pagination",
+  "pytailwindcss",
 ]
 marimo = [
   "marimo",
-  "duckdb",
   "ibis-framework[duckdb]",
   "openai",
-  # "pandas",
   "python-lsp-server",
-  "d2-widget",
+  # "d2-widget",
   # "pygwalker",
-  "connectorx",
-  "polars",
-  # "pyarrow",
+  # "polars",
   "numpy",
+  "dlt",
   "altair",
   "vegafusion",
   "vl-convert-python",
@@ -73,13 +81,19 @@ marimo = [
   "joblib",
 ]
 daft = ["daft[google, iceberg, postgres, ray, sql, audio, viz]"]
+
+adbc = [
+"adbc-driver-postgresql",
+"adbc-driver-duckdb",
+"pyarrow",]
+
 dagster = [
   "dagster",
   "data-diff",
   "sqlmesh[duckdb,github]",
-  "dlt[filesystem,parquet,s3,cli,duckdb,http]",
   "dagster-duckdb",
   # "whylogs",
+  # "apache-gravitino",
   "dagster-postgres",
   "dagster-polars",
   "dagster-sqlmesh",
@@ -90,6 +104,11 @@ dagster = [
   "dagster-pandera",
   "dagster-dg-cli",
   "dagster-webserver",
+]
+cloud = [
+"pytest-kubernetes",
+"kr8s",
+"infisicalsdk",
 ]
 
 [tool.dg]
