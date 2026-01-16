@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   rustFlags = [
     # Faster linker (mold)
     "-C"
@@ -14,7 +15,8 @@
     "-C"
     "codegen-units=256"
   ];
-in {
+in
+{
   profiles.rust = {
     module = {
       enterShell = ''
@@ -60,13 +62,13 @@ in {
         cargo-test = {
           enable = true;
           entry = "cargo nextest run";
-          stages = ["pre-push"];
+          stages = [ "pre-push" ];
         };
         # Check for unused dependencies before committing.
         cargo-machete = {
           enable = true;
           entry = "cargo machete";
-          stages = ["pre-commit"];
+          stages = [ "pre-commit" ];
         };
       };
 
@@ -140,7 +142,7 @@ in {
 
       # 7. Task to run the init script automatically.
       tasks."rust:init".exec = "rust-init";
-      tasks."rust:init".before = ["devenv:enterShell"];
+      tasks."rust:init".before = [ "devenv:enterShell" ];
     };
   };
 }

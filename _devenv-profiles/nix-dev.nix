@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   profiles.nix-dev = {
     module = {
       # enterShell = ''

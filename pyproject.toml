@@ -8,113 +8,156 @@ version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = []
 
+# --- DEPENDENCY GROUPS (PEP 735) ---
 [dependency-groups]
-base = [ # always-installed by devenv
-  "pytest",
-  "restate-sdk",
-  "invoke",
-  "python-dateutil",
-  "watchfiles",
-  "pytest-cov",
-  "pytest-mock",
-  "opendal",
-  "plumbum",
-  "loguru",
-  # "polyfactory",
-  "rich",
-  "orjson",
-  "minijinja",
-  "pydantic",
-  "tabulate",
-  "typer",
-  "httpx",
-  "pydantic-settings", # replaces python-dotenv
-  # "websockets",
-  # "pathvalidate",
-  # "pathspec",
-  # "s3fs",
-  "universal-pathlib",
-  # "fsspec[s3,http]",
-  "icecream",
-  # "libsql" # replaces "aiosqlite",
-  #  "uvloop",
-  #  "python-magic",
-  #  "aiofiles",
+base = [
+    # --- Core Pydantic Stack ---
+    "pydantic>=2.10",
+    "pydantic-settings>=2.7",
+    "pydantic-extra-types>=2.9",
+    "icontract>=2.6",
+    "devtools>=0.12",
+
+    "logfire",
+    "orjson",
+
+    # --- Development Tools (Moved to Base) ---
+    "ruff>=0.9.0",
+    "ty>=0.0.12",
+
+
+    # --- User Utilities ---
+    "pytest",
+    "restate-sdk",
+    "invoke",
+    "watchfiles",
+    "pytest-cov",
+    # "pytest-mock",
+    "opendal",
+    "plumbum",
+    # "loguru",
+    "polyfactory",
+    # "hypothesis",
+    "rich",
+    "minijinja",
+    "typer",
+    "httpx",
+    # "websockets",
+    # "pathvalidate",
+    # "pathspec",
+    # "s3fs",
+    "universal-pathlib",
+    # "fsspec[s3,http]",
+    # "icecream",
+    # "uvloop",
+    # "python-magic",
+    # "aiofiles",
 ]
 
-tui = ["textual",
-]
+tui = ["textual"]
 
 fastapi = [
-  "fastapi",
-# minijinja replaced "jinja2-fragments", "fastapi-htmx","fasthx[jinja]",
-  "granian[pname,uvloop,reload]",
-  "asyncpg",                               # Already have it - use for caching too
-  "structlog",
-  "python-multipart",
-  "connect-python", # for buf/connectrpc
-  "opentelemetry-instrumentation-fastapi",
-  "opentelemetry-exporter-otlp",
-  "prometheus-client",
-  "libsql", # this is turso
-  # "supabase",
-  "slowapi",
-  "fastapi-cache2",
-  "fastapi-pagination",
-  "pytailwindcss",
+    "fastapi",
+    "psycopg[binary]",
+    "datamodel-code-generator",
+    "sqlmodel",
+    # minijinja replaced "jinja2-fragments", "fastapi-htmx","fasthx[jinja]",
+    "granian[pname,uvloop,reload]",
+    # "asyncpg",
+    "connect-python",
+    # "libsql",
+    # "supabase",
+    "slowapi",
+    "cashews",
+    "fastapi-pagination",
+    "pytailwindcss",
 ]
-marimo = [
-  "marimo",
-  "ibis-framework[duckdb]",
-  "openai",
-  "python-lsp-server",
-  # "d2-widget",
-  # "pygwalker",
-  # "polars",
-  "numpy",
-  "dlt",
-  "altair",
-  "vegafusion",
-  "vl-convert-python",
-  "pandera[ibis]",
-  # "bambi",
-  "joblib",
-]
-daft = ["daft[google, iceberg, postgres, ray, sql, audio, viz]"]
 
-adbc = [
-"adbc-driver-postgresql",
-"adbc-driver-duckdb",
-"pyarrow",]
+marimo = [
+    "marimo",
+    "ibis-framework[duckdb]",
+    "openai",
+    "python-lsp-server",
+    # "d2-widget",
+    # "pygwalker",
+    # "polars",
+    # "numpy",
+    "dlt",
+    "altair",
+    "vegafusion",
+    "vl-convert-python",
+    "pandera[ibis]",
+    # "bambi",
+    "joblib",
+]
 
 dagster = [
-  "dagster",
-  "data-diff",
-  "sqlmesh[duckdb,github]",
-  "dagster-duckdb",
-  # "whylogs",
-  # "apache-gravitino",
-  "dagster-postgres",
-  "dagster-polars",
-  "dagster-sqlmesh",
-  "dagster-dlt",
-  "dagster-ducklake",
-  "dagster-iceberg",
-  "dagster-ibis",
-  "dagster-pandera",
-  "dagster-dg-cli",
-  "dagster-webserver",
+    "dagster",
+    "data-diff",
+    "sqlmesh[duckdb,github]",
+    "dagster-duckdb",
+    # "whylogs",
+    # "apache-gravitino",
+    "dagster-postgres",
+    "dagster-polars",
+    "dagster-sqlmesh",
+    "dagster-dlt",
+    "dagster-ducklake",
+    "dagster-iceberg",
+    "dagster-ibis",
+    "dagster-pandera",
+    "dagster-dg-cli",
+    "dagster-webserver",
 ]
+
+daft = ["daft[audio,google,iceberg,postgres,sql,viz]"]
+
+adbc = [
+    # "adbc-driver-postgresql",
+    # "adbc-driver-duckdb",
+    # "pyarrow"
+]
+
 cloud = [
-"pytest-kubernetes",
-"kr8s",
-"infisicalsdk",
+    "pytest-kubernetes",
+    "kr8s",
+    "infisical-python",
 ]
+
+ocr = ["kreuzberg"]
+
+# --- TOOL CONFIGURATION ---
 
 [tool.dg]
 directory_type = "project"
-root_module = "pipeline"   # Must match your src/ folder name
-
+root_module = "pipeline"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/devenv_polyglot"]
+packages = ["src"]
+
+# --- TY CONFIGURATION ---
+[tool.ty.environment]
+# python-version = "3.11"
+
+[tool.ty.rules]
+possibly-unresolved-reference = "error"
+
+[tool.ty.terminal]
+error-on-warning = true
+output-format = "full"
+
+[tool.ty.analysis]
+respect-type-ignore-comments = true
+
+# --- RUFF CONFIGURATION ---
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "N", "RUF", "TCH","FURB"]
+ignore = ["B008"]
+fixable = ["ALL"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["devenv_polyglot"]

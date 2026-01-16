@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   profiles.cloud = {
     module = {
       enterShell = ''
@@ -26,6 +27,8 @@
       # 2. Define the package set for the cloud/infrastructure stack.
       packages = with pkgs; [
         # Kubernetes Core Tools and Orchestration
+        clusterctl
+        kind
         kubectl # Kubernetes CLI
         k9s # Kubernetes TUI
         kustomize # Kubernetes native configuration customization
@@ -35,18 +38,18 @@
         talosctl # CLI for Talos Linux
         kubeconform # Kubernetes manifest validation
         kyverno # Kubernetes native policy engine
-        talhelper
+        # talhelper
         kubeswitch
-        helm-docs
+        # helm-docs
 
         # Kubernetes Utilities and Observability
         kdash # Kubernetes dashboard TUI
         hubble # Observability for Cilium
         kail # Kubernetes log streamer
         stern # Multi-pod and container log tailing
-        pluto # Find deprecated Kubernetes APIs
-        mirrord # Connect local processes to Kubernetes clusters
-        tetragon # eBPF-based security observability and runtime enforcement
+        # pluto # Find deprecated Kubernetes APIs
+        # mirrord # Connect local processes to Kubernetes clusters
+        # tetragon # eBPF-based security observability and runtime enforcement
 
         # Container and Image Tools
         # lazydocker # Docker and Docker Compose TUI
@@ -67,7 +70,7 @@
 
         # Infrastructure as Code (IaC)
         # hclfmt # HCL formatter (Terraform, Packer)
-        opentofu # Terraform-compatible CLI
+        # opentofu # Terraform-compatible CLI
         # terraform-docs
         # driftctl
         # inframap
@@ -87,12 +90,12 @@
 
       # 3. Centralized formatting and linting via treefmt for cloud-native files.
       treefmt.config.programs = {
-        hclfmt.enable = true; # For HashiCorp Configuration Language (HCL)
-        terraform.enable = true; # For Terraform-specific formatting (uses opentofu)
+        # hclfmt.enable = true; # For HashiCorp Configuration Language (HCL)
+        # terraform.enable = true; # For Terraform-specific formatting (uses opentofu)
         # hadolint.enable = true; # For Dockerfile linting
-        dockerfmt.enable = true; # For Dockerfile formatting
-        actionlint.enable = true; # For GitHub Actions workflows linting
-        pinact.enable = true; # For pinning GitHub Actions versions
+        #dockerfmt.enable = true; # For Dockerfile formatting
+        # actionlint.enable = true; # For GitHub Actions workflows linting
+        # pinact.enable = true; # For pinning GitHub Actions versions
       };
     };
   };

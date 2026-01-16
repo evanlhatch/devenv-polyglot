@@ -1,0 +1,5 @@
+_min_copier_version: "9.0.0"
+project_name:
+  type: str
+  help: "Name of the C99 project"
+  default: "c99-constitutional"

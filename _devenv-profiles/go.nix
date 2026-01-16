@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   profiles.go = {
     module = {
       enterShell = ''
@@ -31,13 +32,13 @@
         go-mod-tidy = {
           enable = true;
           entry = "go mod tidy";
-          stages = ["pre-commit"];
+          stages = [ "pre-commit" ];
         };
         # Run tests before pushing.
         go-test = {
           enable = true;
           entry = "go test ./...";
-          stages = ["pre-push"];
+          stages = [ "pre-push" ];
         };
       };
 
@@ -83,7 +84,7 @@
 
       # 6. Task to run the init script automatically.
       tasks."go:init-modules".exec = "init-go-modules";
-      tasks."go:init-modules".before = ["devenv:enterShell"];
+      tasks."go:init-modules".before = [ "devenv:enterShell" ];
     };
   };
 }

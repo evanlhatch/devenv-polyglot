@@ -1,0 +1,33 @@
+project('{{ project_name }}', 'c',
+  version: '0.1.0',
+  default_options: [
+    'c_std=c99',
+    'warning_level=3',
+    'werror=true',
+    'b_sanitize=address,undefined',
+  ]
+)
+
+add_project_arguments('-D_GNU_SOURCE', language: 'c')
+
+add_project_arguments(
+  '-Wshadow', '-Wstrict-prototypes', '-Wmissing-prototypes',
+  '-Wcast-qual', '-Wconversion', '-Wwrite-strings',
+  '-Werror=vla',
+  language: 'c'
+)
+
+unity_dep = dependency('unity', fallback: ['unity', 'unity_dep'], required: false)
+
+src_files = files('src/main.c')
+
+executable('main', src_files, install: true)
+
+if unity_dep.found()
+  test_exe = executable('unit_tests',
+    ['tests/main_test.c', 'src/main.c'],
+    dependencies: [unity_dep],
+    c_args: '-DTEST_MODE'
+  )
+  test('unit_tests', test_exe)
+endif
