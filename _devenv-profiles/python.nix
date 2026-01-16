@@ -94,7 +94,7 @@
         "fastapi"
       ];
       packages = with pkgs; [
-        sqlc
+        # sqlc
         atlas
       ];
     };
