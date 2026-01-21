@@ -16,8 +16,21 @@
       };
 
       # 3. Automation Scripts
-      scripts.wtf-schema-build-plugin = {
-        description = "Build the TurboLink plugin binary locally for wtf-schema";
+      scripts.wtf-schema-init = {
+        description = "Scaffolds project root with buf config and CI workflow";
+        exec = ''
+          echo "Scaffolding wtf-schema project infrastructure..."
+          # The template path is resolved declaratively relative to this Nix file.
+          ${pkgs.copier}/bin/copier copy \
+            ${./copier_templates/wtf-schema} \
+            . \
+            --overwrite \
+            --data project_name=wtf-schema
+          echo "Scaffolding complete. Run 'devenv shell' for environment setup."
+        '';
+      };
+
+      scripts.wtf-schema-build-plugin = {        description = "Build the TurboLink plugin binary locally for wtf-schema";
         exec = ''
           if [ ! -d "tools/protoc-gen-turbolink" ]; then
             git clone https://github.com/thejinchao/protoc-gen-turbolink tools/protoc-gen-turbolink
