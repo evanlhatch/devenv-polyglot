@@ -23,5 +23,5 @@ jobs:
         shell: devenv shell bash -- -e {0}
         run: wtf-schema-ci # Execute the new CI script
         env:
-          INFISICAL_CLIENT_ID: ${{ secrets.INFISICAL_CLIENT_ID }}
-          INFISICAL_CLIENT_SECRET: ${{ secrets.INFISICAL_CLIENT_SECRET }}
+          # Inject BUF_TOKEN directly from GitHub secrets
+          BUF_TOKEN: ${{ secrets.BUF_TOKEN }}

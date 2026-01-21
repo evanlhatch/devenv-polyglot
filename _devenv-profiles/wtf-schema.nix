@@ -8,18 +8,9 @@
       languages.dotnet.enable = true;
       packages = [
         pkgs.buf
-        pkgs.infisical # Re-added
         pkgs.copier
-        pkgs.git
+        pkgs.git # Required for cloning protoc-gen-turbolink
       ];
-
-      # Infisical secret for Buf Schema Registry token
-      infisical.secrets = {
-        BUF_TOKEN = {
-          secret = "buf";
-          environment = "default";
-        };
-      };
 
       # 2. Distroless-style OCI container (Kept for the TurboLink generator)
       containers.wtf-schema = {
@@ -62,11 +53,11 @@
           wtf-schema-build-plugin
           devenv container wtf-schema build
 
-          # 1. Push schema to Buf Schema Registry (BSR)
-          infisical run --env=production -- buf push # Re-added infisical run
+          # 1. Push schema to Buf Schema Registry (BSR). Requires BUF_TOKEN in environment.
+          buf push
 
           # 2. Generate code: Unreal C++, Pydantic, Postgres SQL
-          infisical run --env=production -- buf generate # Re-added infisical run
+          buf generate
         '';
       };
     }
