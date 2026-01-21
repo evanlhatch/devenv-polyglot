@@ -10,6 +10,14 @@
       languages.dotnet.enable = true;
       packages = [pkgs.buf pkgs.infisical pkgs.copier];
 
+      # Infisical secret for Buf Schema Registry token
+      infisical.secrets = {
+        BUF_TOKEN = {
+          secret = "buf";
+          environment = "default";
+        };
+      };
+
       # 2. Distroless-style OCI container (Kept for the TurboLink generator)
       containers.wtf-schema = {
         name = "worlds/wtf-schema-gen";
