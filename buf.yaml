@@ -1,0 +1,6 @@
+version: v2
+modules:
+  - path: .
+    name: buf.build/worlds/wtf-schema
+deps:
+  - buf.build/protocolbuffers/well-known-types

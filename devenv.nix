@@ -11,13 +11,14 @@
 
   packages = with pkgs; [
     copier
+    buf
+    protobuf
     #minijinja
     #trufflehog
     jujutsu
     infisical
     #secretspec
     #_1password
-    #buf
   ];
 
   difftastic.enable = true;

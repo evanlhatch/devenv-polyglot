@@ -8,7 +8,7 @@ version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = []
 
-# --- DEPENDENCY GROUPS (PEP 735) ---
+# --- DEPENDENCY GROUPS (PEP 735) ---P
 [dependency-groups]
 base = [
   # --- Core Pydantic Stack ---
@@ -19,6 +19,9 @@ base = [
   "devtools>=0.12",
   "datamodel_code_generator", #json/yaml to pydantic
   "protobuf-to-pydantic", #proto to pydantic
+  "opentelemetry-semantic-conventions",
+  "hypothesis-protobuf",
+
 
   "logfire",
   "orjson",
