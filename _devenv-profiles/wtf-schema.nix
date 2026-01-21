@@ -2,13 +2,19 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   # Use a type annotation for clarity as per user preference
   profiles.wtf-schema.module = (
-    {config, ...}: {
+    { config, ... }:
+    {
       # 1. Environment requirements
       languages.dotnet.enable = true;
-      packages = [pkgs.buf pkgs.infisical pkgs.copier pkgs.git];
+      packages = [
+        pkgs.buf
+        pkgs.infisical
+        pkgs.copier
+      ];
 
       # Infisical secret for Buf Schema Registry token
       infisical.secrets = {
@@ -21,7 +27,7 @@
       # 2. Distroless-style OCI container (Kept for the TurboLink generator)
       containers.wtf-schema = {
         name = "worlds/wtf-schema-gen";
-        copyToRoot = [./dist/turbolink];
+        copyToRoot = [ ./dist/turbolink ];
         startupCommand = "/turbolink/protoc-gen-turbolink";
       };
 
@@ -52,28 +58,19 @@
         '';
       };
 
-      # The key CI pipeline that now includes copier scaffolding
+      # The key CI pipeline
       scripts.wtf-schema-ci = {
-        description = "Complete CI pipeline: Build, Push, Generate, and Scaffold";
+        description = "Complete CI pipeline: Build OCI, Push Schema, and Generate Code";
         exec = ''
           wtf-schema-build-plugin
           devenv container wtf-schema build
 
           # 1. Push schema to Buf Schema Registry (BSR)
+          # Note: This requires .proto files to be in the working directory (buf.yaml path: .)
           infisical run --env=production -- buf push
 
           # 2. Generate code: Unreal C++, Pydantic, Postgres SQL
           infisical run --env=production -- buf generate
-
-          # 3. Trigger Copier Scaffolding for 'cfreqtion'
-          echo "Triggering copier scaffolding for 'cfreqtion' based on c99 template example..."
-          # The template path is resolved declaratively relative to this Nix file.
-          ${pkgs.copier}/bin/copier copy \
-            ${./copier_templates/c99} \
-            ./cfreqtion-output \
-            --overwrite \
-            --data project_name=cfreqtion
-          echo "Scaffolding complete."
         '';
       };
     }
