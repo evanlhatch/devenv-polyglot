@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   profiles.cloud = {
     module = {
       enterShell = ''

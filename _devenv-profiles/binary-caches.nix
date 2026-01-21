@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   # Configure Nix binary caches via environment variables
   # These will be available in the devenv shell and respected by Nix
   env = {

@@ -4,8 +4,7 @@
   config,
   inputs,
   ...
-}:
-{
+}: {
   # base
   env.VIRTUAL_ENV = "${config.env.DEVENV_STATE}/venv";
 
@@ -95,7 +94,7 @@
 
   # shared hooks (non-formatting/linting)
   git-hooks = {
-    excludes = [ ]; # Excludes are now handled by treefmt.config.settings.global.excludes
+    excludes = []; # Excludes are now handled by treefmt.config.settings.global.excludes
     hooks = {
       trufflehog.enable = false;
       treefmt.enable = true;
@@ -119,9 +118,9 @@
   '';
 
   /*
-        -----------------------------------------------------------
-        2.  PROFILES – opt-in language stacks
-    -----------------------------------------------------------
+      -----------------------------------------------------------
+      2.  PROFILES – opt-in language stacks
+  -----------------------------------------------------------
   */
   # Import all profile modules from devenv-profiles folder for faster eval times
   imports = builtins.map (name: import (./_devenv-profiles + "/${name}")) (

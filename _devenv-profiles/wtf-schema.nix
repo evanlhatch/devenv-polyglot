@@ -1,17 +1,19 @@
-{ pkgs, config, ... }:
 {
+  pkgs,
+  config,
+  ...
+}: {
   # Use a type annotation for clarity as per user preference
   profiles.wtf-schema.module = (
-    { config, ... }:
-    {
+    {config, ...}: {
       # 1. Environment requirements
       languages.dotnet.enable = true;
-      packages = [ pkgs.buf pkgs.infisical pkgs.copier ];
+      packages = [pkgs.buf pkgs.infisical pkgs.copier];
 
       # 2. Distroless-style OCI container (Kept for the TurboLink generator)
       containers.wtf-schema = {
         name = "worlds/wtf-schema-gen";
-        copyToRoot = [ ./dist/turbolink ];
+        copyToRoot = [./dist/turbolink];
         startupCommand = "/turbolink/protoc-gen-turbolink";
       };
 
@@ -30,7 +32,8 @@
         '';
       };
 
-      scripts.wtf-schema-build-plugin = {        description = "Build the TurboLink plugin binary locally for wtf-schema";
+      scripts.wtf-schema-build-plugin = {
+        description = "Build the TurboLink plugin binary locally for wtf-schema";
         exec = ''
           if [ ! -d "tools/protoc-gen-turbolink" ]; then
             git clone https://github.com/thejinchao/protoc-gen-turbolink tools/protoc-gen-turbolink

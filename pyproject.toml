@@ -17,8 +17,8 @@ base = [
   "pydantic-extra-types>=2.9",
   "icontract>=2.6",
   "devtools>=0.12",
-  "datamodel_code_generator", #json/yaml to pydantic
-  "protobuf-to-pydantic", #proto to pydantic
+  "datamodel_code_generator",           #json/yaml to pydantic
+  "protobuf-to-pydantic",               #proto to pydantic
   "opentelemetry-semantic-conventions",
   "hypothesis-protobuf",
 

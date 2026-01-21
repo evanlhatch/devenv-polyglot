@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   profiles.zig = {
     module = {
       enterShell = ''
@@ -36,13 +35,13 @@
         zig-test = {
           enable = true;
           entry = "zig build test";
-          stages = [ "pre-push" ];
+          stages = ["pre-push"];
         };
         # Check for build errors before committing.
         zig-build = {
           enable = true;
           entry = "zig build";
-          stages = [ "pre-commit" ];
+          stages = ["pre-commit"];
         };
       };
 
@@ -155,7 +154,7 @@
 
       # 7. Task to run the init script automatically.
       tasks."zig:init".exec = "zig-init";
-      tasks."zig:init".before = [ "devenv:enterShell" ];
+      tasks."zig:init".before = ["devenv:enterShell"];
     };
   };
 }

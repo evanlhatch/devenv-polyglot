@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   profiles.c99 = {
     module = {
       enterShell = ''
@@ -64,7 +63,7 @@
         description = "Scaffold/Update C99 Project via Copier";
         # --trust required for local templates often; --skip-if-exists is default behavior when running against a directory with .copier-answers.yml
         exec = "copier copy --trust _devenv-profiles/copier_templates/c99 .";
-        before = [ "devenv:enterShell" ];
+        before = ["devenv:enterShell"];
       };
 
       scripts.c99-clean = {
