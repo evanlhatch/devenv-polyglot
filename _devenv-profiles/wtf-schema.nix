@@ -8,7 +8,7 @@
     {config, ...}: {
       # 1. Environment requirements
       languages.dotnet.enable = true;
-      packages = [pkgs.buf pkgs.infisical pkgs.copier];
+      packages = [pkgs.buf pkgs.infisical pkgs.copier pkgs.git];
 
       # Infisical secret for Buf Schema Registry token
       infisical.secrets = {

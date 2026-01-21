@@ -11,6 +11,7 @@
 
   packages = with pkgs; [
     copier
+    git
     buf
     protobuf
     #minijinja
