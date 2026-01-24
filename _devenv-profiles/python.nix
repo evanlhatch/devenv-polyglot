@@ -13,7 +13,7 @@
       # 1. Configure UV environment variables for system Python preference.
       env.UV_PYTHON_DOWNLOADS = "never";
       env.UV_PYTHON_PREFERENCE = "only-system";
-      env.UV_PROJECT_ENVIRONMENT = "${config.env.DEVENV_STATE}/venv";
+      env.UV_PROJECT_ENVIRONMENT = lib.mkForce "${config.env.DEVENV_ROOT}/.venv";
 
       # 2. Enable devenv's core Python language support with UV.
       languages.python = {

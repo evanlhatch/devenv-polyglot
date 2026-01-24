@@ -20,7 +20,7 @@ base = [
   "datamodel_code_generator",           #json/yaml to pydantic
   "protobuf-to-pydantic",               #proto to pydantic
   "opentelemetry-semantic-conventions",
-  "hypothesis-protobuf",
+  #"hypothesis-protobuf",
 
 
   "logfire",

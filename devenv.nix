@@ -7,7 +7,7 @@
 }:
 {
   # base
-  env.VIRTUAL_ENV = "${config.env.DEVENV_STATE}/venv";
+  env.VIRTUAL_ENV = lib.mkForce "${config.env.DEVENV_ROOT}/.venv";
 
   packages = with pkgs; [
     copier
@@ -23,7 +23,7 @@
   ];
 
   difftastic.enable = true;
-  delta.enable = true;
+  delta.enable = false;
   cachix.enable = false;
   dotenv.enable = true;
 
@@ -107,11 +107,7 @@
 
   # Force .venv to be a symlink to the actual environment
   enterShell = ''
-    if [ ! -L .venv ]; then
-      echo "Fixing .venv symlink..."
-      rm -rf .venv
-      ln -s $VIRTUAL_ENV .venv
-    fi
+    export PATH="$VIRTUAL_ENV/bin:$PATH"
   '';
 
   enterTest = ''

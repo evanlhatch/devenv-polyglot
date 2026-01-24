@@ -1,5 +1,0 @@
-_min_copier_version: "9.0.0"
-project_name:
-  type: str
-  help: "Name of the project to initialize (e.g. wtf-schema)"
-  default: "wtf-schema"

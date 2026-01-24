@@ -1,6 +1,0 @@
-version: v2
-modules:
-  - path: proto # Updated to use the recommended 'proto' directory
-    name: buf.build/worlds/wtf-schema
-deps:
-  - buf.build/protocolbuffers/well-known-types
