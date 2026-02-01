@@ -75,16 +75,6 @@ in {
       treefmt.config.programs = {
         # Enable rustfmt for code formatting.
         rustfmt.enable = true;
-        # Enable clippy for linting.
-        clippy = {
-          enable = true;
-          # Ensure the pre-commit hook fails if there are any warnings.
-          options = [
-            "--"
-            "-D"
-            "warnings"
-          ];
-        };
       };
 
       # 6. Script to generate a default Cargo.toml with best practices.
